@@ -36,24 +36,26 @@ const LineChart = () => {
     }),
     datasets: [
       {
-        label: "Income",
+        label: "Ingreso",
         data: [...incomes.map((income) => {
           const { amount } = income;
           return amount;
         })],
-        tension: 0.5,
-        backgroundColor: "green",
+        tension: .2,
+        backgroundColor: "#0f9bc3",
+        borderColor:"#0f9bc3",
         pointRadius: 5,
-        pointBackgroundColor: "green",
+        pointBackgroundColor: "#0f9bc3",
       },
       {
-        label: "Expense",
+        label: "Egreso",
         data: [...expenses.map((expense) => {
           const { amount } = expense;
           return amount;
         })],
-        tension: 0.5,
+        tension: .2,
         backgroundColor: "red",
+        borderColor:"red",
         pointRadius: 5,
         pointBackgroundColor: "red",
       },

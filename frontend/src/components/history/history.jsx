@@ -5,17 +5,17 @@ const History = () => {
   const [...history] = transactionHistory();
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="text-2xl text-purple-400 font-bold mb-5 mt-[11%]">
-        Recent History
+      <h2 className="text-2xl text-white font-bold mb-5 mt-[9%]">
+        Movimientos recientes
       </h2>
       {history.map((item) => {
-        const { _id, title, amount, type } = item;
+        const { _id, title, amount, category } = item;
         return (
           <div
             key={_id}
-            className="flex flex-row justify-between bg-[#FCF6F9] border-2 p-2"
+            className="flex flex-row justify-between rounded-2xl bg-[#FCF6F9] border-2 p-2"
           >
-            <span className="font-bold">{title}</span>
+            <span className="font-bold">{title} ({category})</span>
             <span className="font-extrabold text-black">
               $ {amount}
             </span>

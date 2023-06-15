@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useState } from "react";
 import axios from "axios";
+import swal from "sweetalert2";
 const BASE_URL = "http://localhost:2022";
 
 const GlobalContext = React.createContext();
@@ -8,7 +9,7 @@ const GlobalContext = React.createContext();
 export const GlobalProvider = ({ children }) => {
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
-  const [error, setError] = useState(null);
+  const [users, setUsers] = useState([]);
 
   //Incomes
   const addIncome = async (income) => {
@@ -60,9 +61,9 @@ export const GlobalProvider = ({ children }) => {
     const response = await fetch(`${BASE_URL}/expenses/get-expense`, {
       method: "GET",
     })
-    .then((res) => res.json())
-    .then((data) => setExpenses(data))
-    getExpenses()
+      .then((res) => res.json())
+      .then((data) => setExpenses(data));
+    getExpenses();
   };
 
   const deleteExpense = async (id) => {
@@ -77,22 +78,44 @@ export const GlobalProvider = ({ children }) => {
   const totalExpense = () => {
     let total = 0;
     expenses.forEach((expense) => {
-      total = total + expense.amount
+      total = total + expense.amount;
     });
-    return total
+    return total;
   };
 
   const totalBalance = () => {
-    return totalIncome() - totalExpense()
-  }
+    return totalIncome() - totalExpense();
+  };
 
   const transactionHistory = () => {
-    const history = [...incomes,...expenses]
-    history.sort((a,b) => {
-      return new Date(b.createdAt) - new Date(a.createdAt)
-    })
-    return history.slice(0,4)
-  }
+    const history = [...incomes, ...expenses];
+    history.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+    return history.slice(0, 4);
+  };
+
+  //users
+  const addUser = async (user) => {
+    const response = await axios.post(`${BASE_URL}/users/registro`, user);
+    console.log(response.config.data);
+  };
+
+  const loginUser = async (user) => {
+    const { email, password } = user;
+    if (email.length !== 0 || password.length !== 0) {
+      const response = await axios.post(`${BASE_URL}/users/login`, user);
+      window.location.href='./dashboard'
+      console.log(response.data);
+    } else {
+      swal.fire({
+        title: "Error!", 
+        text: "No ingresaste los datos!",
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  };
 
   return (
     <GlobalContext.Provider
@@ -107,8 +130,11 @@ export const GlobalProvider = ({ children }) => {
         totalExpense,
         totalBalance,
         transactionHistory,
+        addUser,
+        loginUser,
         expenses,
-        incomes
+        incomes,
+        users,
       }}
     >
       {children}
