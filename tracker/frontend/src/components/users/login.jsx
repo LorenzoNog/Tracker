@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { UseGlobalContext } from "../../context/globalContext";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loginUser } = UseGlobalContext();
@@ -15,8 +14,6 @@ const Login = () => {
   const handleChange = (name) => (e) => {
     setInputState({ ...inputState, [name]: e.target.value });
   };
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,9 +60,7 @@ const Login = () => {
                 className="focus:outline-none border-b-[1px] bg-transparent border-white p-2 text-white"
               />
             </div>
-            <button
-              className="bg-white rounded-xl font-bold mt-5 hover:bg-black hover:text-white ease-in duration-200"
-            >
+            <button className="bg-white rounded-xl font-bold mt-5 hover:bg-black hover:text-white ease-in duration-200">
               Ingresar
             </button>
           </form>
