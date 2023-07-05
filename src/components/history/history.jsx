@@ -5,7 +5,7 @@ const History = () => {
   const [...history] = transactionHistory();
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="text-2xl text-white font-bold mb-5 mt-[9%]">
+      <h2 className="text-2xl text-white font-bold mb-5 mt-[9%] text-center">
         Movimientos recientes
       </h2>
       {history.map((item) => {

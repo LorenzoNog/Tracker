@@ -8,7 +8,7 @@ const Navbar = ({ active, setActive }) => {
   return (
     <div className="bg-[#272953] flex flex-col justify-between gap-3 px-[2rem] py-[1.5rem] w-[350px] h-[100vh border-[#FFFFF] rounded-xl">
       <h2 className="text-2xl font-extrabold uppercase text-white p-2">
-        Your money
+        Tu dinero
       </h2>
       <ul className="flex flex-col gap-12 ">
         {MenuItems.map((item) => {

@@ -28,10 +28,12 @@ const Dashboard = () => {
           </div>
           <div className="grid grid-cols-4 gap-5 mt-5">
             <div className="bg-[#FCF6F9] p-3 border-2 col-span-2 rounded-xl flex flex-col place-items-center">
-              <h2 className="font-bold text-xl text-gray-500">Total ingresos:</h2>
+              <h2 className="font-bold text-xl text-gray-500">
+                Total ingresos:
+              </h2>
               <span className="font-bold text-green-500 text-4xl">
                 $ {totalIncome()}
-              </span> 
+              </span>
             </div>
             <div className="bg-[#FCF6F9] p-3 border-2 col-span-2 rounded-xl flex flex-col place-items-center">
               <h2 className="font-bold text-xl text-gray-500">
